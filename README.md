@@ -47,6 +47,11 @@ logger.with_context(foo: { bar: 42 }) { |l| l.info("Use JSON instead!") }
 # you can go batshit crazy when using a json logger, anything that can be dumped to json is fair game
 Sw.json_logger(STDOUT).with_context(foo: { bar: 42 }) { |l| l.info("Oooh, yeah!") }
 # => {"bar":{"foo":42},"severity":"INFO","timestamp":"2020-01-31T11:27:34.848643","message":"Oooh, yeah!"}
+
+# you can also chain tags and context,
+# you also don't need to open a block for a single tagged / context enriched statement
+logger.tagged("MyApp", "MyDomain").with_context(tenant: 42).info("Tags & Context apply only for this call.")
+# => I, [2020-01-31T11:45:11.348817 #35215]  INFO -- : [MyApp] [MyDomain] [tenant=42] Tags & Context apply only for this call.
 ```
 
 ## Development

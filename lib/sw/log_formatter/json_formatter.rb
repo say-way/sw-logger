@@ -17,7 +17,7 @@ module Sw
           timestamp: format_datetime(time),
           progName: progname,
           tags: tags,
-          message: msg2str(msg)
+          message: msg
         )
 
         JSON.dump(remove_blank_values(payload)) + "\n"
